@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Tourist\TouristController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -14,9 +15,9 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/tourist', function () {
+    return Inertia::render('Tourist/Tourist');
+})->middleware(['auth', 'verified'])->name('tourist.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -24,4 +25,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+Route::prefix('/tourist')->group(function () {
+    Route::get('/', [TouristController::class, 'index'])->name('tourist.index');
+    Route::post('/add', [TouristController::class, 'store'])->name('tourist.store');
+    Route::delete('/delete/{id}', [TouristController::class, 'destroy'])->name('tourist.destroy');
+    Route::put('/edit/{id}', [TouristController::class, 'update'])->name('tourist.update');
+});
+
+
+
+require __DIR__ . '/auth.php';
