@@ -14,8 +14,7 @@ class TouristController extends Controller
      */
     public function index()
     {
-        $tourist = Tourist::all();
-        return Inertia::render('Tourist/Tourist', ['tourist' => $tourist]);
+        return Inertia::render('Tourist/Home');
     }
 
     /**
@@ -31,19 +30,7 @@ class TouristController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'age' => 'required|integer',
-            'phone' => 'required',
-            'regex:/^\+?[0-9\s]+$/',
-            'min:10',
-            'max:20',
-            'country' => 'required|string|max:255',
-            'address' => 'required|string|max:255'
-        ]);
-
-        Tourist::create($validated);
-        return redirect()->back()->with('success', 'Tourist added successfully');
+       
     }
 
     /**
@@ -67,26 +54,7 @@ class TouristController extends Controller
      */
     public function update(Request $request, $touristId)
     {
-        $validateData = $request->validate([
-            'name' => 'required|string|max:255',
-            'age' => 'required|integer',
-            'phone' => 'required',
-            'regex:/^\+?[0-9\s]+$/',
-            'min:10',
-            'max:20',
-            'country' => 'required|string|max:255',
-            'address' => 'required|string|max:255'
-        ]);
-
-        $tourist = Tourist::findOrFail($touristId);
-        $tourist->update([
-            'name' => $validateData['name'],
-            'age' => $validateData['age'],
-            'phone' => $validateData['phone'],
-            'country' => $validateData['country'],
-            'address' => $validateData['address'],
-        ]);
-        return redirect()->back()->with('success', 'Updated successfully');
+        
 
 
     }
@@ -96,8 +64,6 @@ class TouristController extends Controller
      */
     public function destroy(Tourist $tourist, $id)
     {
-        $tourist = Tourist::findOrFail($id);
-        $tourist->delete();
-        return redirect()->back()->with('success', 'tourist deleted');
+       
     }
 }

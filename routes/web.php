@@ -27,9 +27,7 @@ Route::middleware('auth')->group(function () {
 
 Route::prefix('/tourist')->group(function () {
     Route::get('/', [TouristController::class, 'index'])->name('tourist.index');
-    Route::post('/add', [TouristController::class, 'store'])->name('tourist.store');
-    Route::delete('/delete/{id}', [TouristController::class, 'destroy'])->name('tourist.destroy');
-    Route::put('/edit/{id}', [TouristController::class, 'update'])->name('tourist.update');
+  
 });
 
 
