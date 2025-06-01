@@ -48,19 +48,19 @@ const Carousel = () => {
     };
 
     return (
-        <div className="relative w-full h-screen overflow-hidden">
+        <div className="relative w-full h-[90dvh] overflow-hidden">
             <div className="absolute inset-0 transition-all duration-700 ease-in-out">
                 {images.map((image, index) => (
                     <img
                         key={index}
                         src={image}
                         alt={`carousel-${index}`}
-                        className={`absolute w-full h-screen object-cover transition-opacity duration-1000 ease-in-out ${
+                        className={`absolute w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
                             index === currentIndex ? "opacity-100" : "opacity-0"
                         }`}
                     />
                 ))}
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-10 px-4">
+                <div className="absolute inset-0 w-48 bg-black/50 flex flex-col items-center justify-center text-center z-10 px-4">
                     <p className="text-white text-4xl md:text-6xl font-serif font-bold drop-shadow mb-6">
                         Explore the Wonder of Asia
                     </p>

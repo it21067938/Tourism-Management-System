@@ -1,17 +1,16 @@
-import { logo } from '@/assets/assets';
-import Dropdown from '@/Components/Dropdown';
-import Footer from '@/Components/Footer/Footer';
-import NavLink from '@/Components/NavLink';
-import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
-import { Link, usePage } from '@inertiajs/react';
-import { PropsWithChildren, ReactNode, useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { logo } from "@/assets/assets";
+import Dropdown from "@/Components/Dropdown";
+import Footer from "@/Components/Footer/Footer";
+import NavLink from "@/Components/NavLink";
+import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
+import { Link, usePage } from "@inertiajs/react";
+import { PropsWithChildren, ReactNode, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function Authenticated({
     header,
     children,
-}: PropsWithChildren<{ header?: ReactNode; }>) {
-
+}: PropsWithChildren<{ header?: ReactNode }>) {
     const user = usePage().props.auth.user;
 
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
@@ -19,28 +18,29 @@ export default function Authenticated({
 
     return (
         <div className="flex flex-col min-h-screen bg-gray-100 ">
-            <ToastContainer/>
-            <nav className="fixed top-0 left-0 right-0 z-10 border-b border-gray-100 bg-white">
-                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <ToastContainer />
+            <nav className="sticky top-0 left-0 right-0 z-20  border-b border-gray-100 bg-white">
+                <div className="mx-auto max-w-screen-2xl px-5 sm:px-10 lg:px-20">
                     <div className="flex h-20 justify-between">
-                        <div className="flex">
-                            <div className="flex shrink-0 items-center">
-                                <Link href="/tourist">
-                                    <img src={logo} alt=''className="block h-[110px] w-auto fill-current text-gray-800" />
-                                </Link>
-                            </div>
+                        <div className="flex shrink items-center">
+                            <Link href="/tourist" id="home">
+                                <img
+                                    src={logo}
+                                    alt="logo"
+                                    className="block h-24 w-auto fill-current"
+                                />
+                            </Link>
+                        </div>
 
-                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <div className="hidden sm:ms-6 sm:flex sm:items-center gap-x-20">
+                            <div className="hidden sm:flex sm:-my-px sm:ms-10">
                                 <NavLink
-                                    href={route('tourist.index')}
-                                    active={route().current('tourist.index')}
+                                    href={route("tourist.index")}
+                                    active={route().current("tourist.index")}
                                 >
                                     Home
                                 </NavLink>
                             </div>
-                        </div>
-
-                        <div className="hidden sm:ms-6 sm:flex sm:items-center">
                             <div className="relative ms-3">
                                 <Dropdown>
                                     <Dropdown.Trigger>
@@ -69,12 +69,12 @@ export default function Authenticated({
 
                                     <Dropdown.Content>
                                         <Dropdown.Link
-                                            href={route('profile.edit')}
+                                            href={route("profile.edit")}
                                         >
                                             Profile
                                         </Dropdown.Link>
                                         <Dropdown.Link
-                                            href={route('logout')}
+                                            href={route("logout")}
                                             method="post"
                                             as="button"
                                         >
@@ -89,7 +89,7 @@ export default function Authenticated({
                             <button
                                 onClick={() =>
                                     setShowingNavigationDropdown(
-                                        (previousState) => !previousState,
+                                        (previousState) => !previousState
                                     )
                                 }
                                 className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 transition duration-150 ease-in-out hover:bg-gray-100 hover:text-gray-500 focus:bg-gray-100 focus:text-gray-500 focus:outline-none"
@@ -103,8 +103,8 @@ export default function Authenticated({
                                     <path
                                         className={
                                             !showingNavigationDropdown
-                                                ? 'inline-flex'
-                                                : 'hidden'
+                                                ? "inline-flex"
+                                                : "hidden"
                                         }
                                         strokeLinecap="round"
                                         strokeLinejoin="round"
@@ -114,8 +114,8 @@ export default function Authenticated({
                                     <path
                                         className={
                                             showingNavigationDropdown
-                                                ? 'inline-flex'
-                                                : 'hidden'
+                                                ? "inline-flex"
+                                                : "hidden"
                                         }
                                         strokeLinecap="round"
                                         strokeLinejoin="round"
@@ -130,16 +130,16 @@ export default function Authenticated({
 
                 <div
                     className={
-                        (showingNavigationDropdown ? 'block' : 'hidden') +
-                        ' sm:hidden'
+                        (showingNavigationDropdown ? "block" : "hidden") +
+                        " sm:hidden"
                     }
                 >
                     <div className="space-y-1 pb-3 pt-2">
                         <ResponsiveNavLink
-                            href={route('tourist.index')}
-                            active={route().current('tourist.index')}
+                            href={route("tourist.index")}
+                            active={route().current("tourist.index")}
                         >
-                            tourist
+                            Home
                         </ResponsiveNavLink>
                     </div>
 
@@ -154,12 +154,12 @@ export default function Authenticated({
                         </div>
 
                         <div className="mt-3 space-y-1">
-                            <ResponsiveNavLink href={route('profile.edit')}>
+                            <ResponsiveNavLink href={route("profile.edit")}>
                                 Profile
                             </ResponsiveNavLink>
                             <ResponsiveNavLink
                                 method="post"
-                                href={route('logout')}
+                                href={route("logout")}
                                 as="button"
                             >
                                 Log Out
@@ -178,7 +178,7 @@ export default function Authenticated({
             )}
 
             <main className="flex-grow">{children}</main>
-            <Footer/>
+            <Footer />
         </div>
     );
 }
