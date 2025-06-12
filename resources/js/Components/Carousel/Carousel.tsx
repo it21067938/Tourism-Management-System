@@ -60,21 +60,10 @@ const Carousel = () => {
                         }`}
                     />
                 ))}
-                <div className="absolute inset-0 w-48 bg-black/50 flex flex-col items-center justify-center text-center z-10 px-4">
-                    <p className="text-white text-4xl md:text-6xl font-serif font-bold drop-shadow mb-6">
+                <div className="absolute inset-0 bg-black/35 flex flex-col items-center justify-center text-center z-10 px-4">
+                    <p className="text-white text-3xl md:text-6xl font-serif font-bold drop-shadow mb-10">
                         Explore the Wonder of Asia
                     </p>
-
-                    <div className="flex w-full max-w-md bg-white overflow-hidden shadow">
-                        <input
-                            type="text"
-                            placeholder="Search destinations..."
-                            className="flex-1 px-5 py-3 text-gray-700 outline-none"
-                        />
-                        <button className="px-8 bg-blue-600 hover:bg-blue-700 text-white">
-                            Search
-                        </button>
-                    </div>
                 </div>
             </div>
 
